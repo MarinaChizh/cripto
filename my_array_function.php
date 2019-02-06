@@ -18,19 +18,14 @@ return ($result);
 }
 
 
-function my_array_reverse ($array){
-    for ($k=0; $k < count($array); $k++) { 
-        for ($i=0; $i < count($array); $i++) { 
-          if ($array[$i]<$array[$i+1]) {
-              $b=$array[$i+1];
-              $array[$i+1]=$array[$i];
-              $array[$i]=$b;
-          }  
-        }
-        
+function my_array_reverse ($array) {
+    $k = 0;
+    for ($i=count($array)-1; $i >= 0; $i--) {
+        $reverse[$k] = $array[$i];
+        $k++;
     }
-    return $array;
-    }
+    return $reverse;
+}
 
 
 function my_array_search ($needle, $array) {
