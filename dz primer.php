@@ -1,12 +1,30 @@
-<pre>
 <?php
 include "my_array_function.php";
 $array = array(1,2,3,4,5);
-$array1= array('a','b','c','d');
+?>
 
-print_r (my_array_product($array));
+
+<?php
+function my_array_sum($fun, $arg, $n=100000){
+    $time1=microtime(TRUE);
+    for ($i=0; $i < $n ; $i++) { 
+        $fun($arg);
+    }
+    $time2=microtime(TRUE);
+    return $time2-$time1;
+}
+// echo pow(2, .5); // 2*(1/2)
+function array_product($x){
+    return pow($x, .5);
+}
+
+echo my_array_sum("product", 20);
+echo "<br>";
+echo my_array_sum("array_product", 20);
 
 ?>
+
+
 
 <?php
 

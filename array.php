@@ -14,6 +14,7 @@ for ($k=0; $k < count($arr)+1; $k++) {
 return $arr;
 }
 $a=array(13, 2, 65, 3, 9, 1, 4 );
+shuffle($a);
 
 print_r(f($a));
 ?>
@@ -22,19 +23,20 @@ print_r(f($a));
     $arrayName = array(13, 2, 65, 3, 9, 1, 4);
     arsort($arrayName);
         print_r($arrayName);
-
+shuffle($arrayName);
       ?>
 </pre>
 <?php
 $timeus=microtime();
 for ($i = 1; $i < 10000; $i++) { 
-       f($arr);
+       f($a);
 }
 echo $t1=microtime()-$timeus.    "Пользовательская";
 echo "<br>";
+
 $times=microtime();
 for ($i = 1; $i < 10000; $i++) { 
-       sort($a);
+       sort($arrayName);
 }
 echo $t2=microtime()-$times.  "Встроенная";
 echo "<br>";
