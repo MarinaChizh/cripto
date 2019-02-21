@@ -14,24 +14,26 @@
 
 <?php
  include "function_reg.php";
-// $str = $_POST['text'];
+ $str = $_POST['text'];
 
-// if(!empty($words=bad_words($_POST['text']))){
-//     foreach($words as $v){
-//         echo $v."<br>";
-//     }
-// }else{
-//      echo bb_cod(smile($str));
-// }
+//ВЫВОДИТ ТОЛЬКО ПЛОХИЕ СЛОВА
+if(!empty($words=bad_words($_POST['text']))){
+     foreach($words as $v){
+         echo $v."<br>";
+     }
+ }else{
+      echo bb_cod(smile($str));
+ }
 
 
-print_r(bed($str));
+//print_r(smile($str));
 
 
 //echo preg_match_all ("/дурак|дура|редиска/iu", $_POST['text'],$matches);
 
 
 
+//ЦЕНЗУРА
 
 // function bed($str)
 // {
@@ -54,29 +56,19 @@ print_r(bed($str));
 
 
 
-
+//КВАДРАТНЫЕ СКОБКИ ЗАМЕНЯЮТСЯ ОБЫЧНЫМИ ТЕГАМИ
 //$pat = "/\[b\](.*)\[\/b\]/i";
-/*$pat = array(
-    "/\;\)/", 
-    "/\:\)/",
-    "/\:\-\)/"
-);
-
-$rep = array(
-    '<img src="S1.png" height="100">',
-    '<img src="S2.png" height="100">',
-    '<img src="S3.png" height="100">',
-);*/
 
 
-/*$pat = array();
+//СМАЙЛ МЕНЯЕТСЯ НА ДРУГОЙ ЦВЕТ
+$pat = array();
 $pat[0] = "/\;\)/";
 $pat[1] = "/\:\)/";
 $pat[2] = "/\:\-\)/";
 $rep = array();
 $rep[0] = '<b style="color:red">$0</b>';
 $rep[1] = '<b style="color:green">$0</b>';
-$rep[2] = '<b style="color:yellow">$0</b>';*/
+$rep[2] = '<b style="color:yellow">$0</b>';
 
 
 

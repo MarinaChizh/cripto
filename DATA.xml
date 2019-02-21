@@ -1,0 +1,23 @@
+<post>
+    <msg>Привет 1</msg>
+    <nik>Вася</nik>
+</post>
+
+<post>
+    <msg>Привет 2</msg>
+    <nik>Петя</nik>
+</post>
+
+<post>
+    <msg>Как дела</msg>
+    <nik>Саша</nik>
+</post>
+
+<post>
+    <msg>Погода</msg>
+    <nik>хорошая</nik>
+</post>
+<post>
+    <msg>Как дела</msg>
+    <nik>ОЛЯ</nik>
+</post>

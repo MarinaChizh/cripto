@@ -1,11 +1,18 @@
 ﻿<?php
-//$str = "Hello, boy, ggggg, hhhhh";
 $str=file_get_contents ("https://www.lipsum.com/");
-$pat="/<.+?>/";
-$rep="$1";
-$str2 = preg_replace ($pat, $rep, $str);
-//echo htmlspecialchars($str2);
-echo $str2;
+function cut_sc($str){
+    $str2 = preg_replace('/\<script(.*?)\>(.*)\<\/script\>/i', "", $str);
+return $str2;
+}
+
+
+function cut ($str){
+    $pat="/<.+?>/i";
+    $rep="$1";
+    $str2 = preg_replace ($pat, $rep, $str);
+return $str2;
+}
+echo cut_sc(cut($str));
 ?>
 
 <pre>
@@ -14,13 +21,11 @@ echo $str2;
 echo "Количество слов длинной 14 букв:";
 echo preg_match_all ('/\b\w{14}\b/u', $str, $matches);
 echo "<br>";
-print_r ($matches);
+print_r ($matches[0]);
 ?>
 
 <?php
-foreach($matches as $key => $value)
-{
-echo "[$key]", "$value";
-}
-//print_r (array_count_values($matches));
+print_r (array_count_values($matches[0]));
 ?>
+
+
