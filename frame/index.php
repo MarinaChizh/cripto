@@ -42,8 +42,11 @@ switch ($_GET["pg"]) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {background-color:<?=isset($_SESSION["color"]) ? $_SESSION["color"] : "white" ?>}
-        body {font color: <?=isset($_SESSION["font"]) ? $_SESSION["font"] : "black" ?> ;}
+        body {
+            background-color:<?=isset($_SESSION["color"]) ? $_SESSION["color"] : "white" ?>;
+            
+       color: <?=isset($_SESSION["font"]) ? $_SESSION["font"] : "black" ?> ;
+        }
     </style>
 </head>
 
