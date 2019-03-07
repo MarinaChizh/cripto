@@ -47,3 +47,15 @@ SELECT * FROM `customers` WHERE `CNAME` LIKE '_e%'
 -- Нашлась вторая буква е
 
 -- Функции агрегирования расчитывает группавые характеристики для полей
+-- min    max    avg   count   sum
+SELECT MIN(`AMT`) FROM `Orders`
+SELECT AVG(`AMT`) FROM `Orders`
+SELECT MAX(`AMT`) FROM `Orders`
+SELECT COUNT(`AMT`) FROM `Orders`
+SELECT COUNT(*) FROM `Orders`
+
+SELECT * FROM `Orders` WHERE `AMT` ORDER BY `AMT`
+-- Сортирует столбец
+
+SELECT * FROM `salespeople` ORDER BY 2
+-- Сортирует только по второму полу
