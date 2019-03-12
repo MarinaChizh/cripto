@@ -58,4 +58,43 @@ SELECT * FROM `Orders` WHERE `AMT` ORDER BY `AMT`
 -- Сортирует столбец
 
 SELECT * FROM `salespeople` ORDER BY 2
--- Сортирует только по второму полу
+-- Сортирует только по второму полю
+
+UPDATE vedomost SET ZP=500 WHERE P = 'Сбыт';
+-- в ТАБЛИЦЕ ведомость столбец ЗП зарплату работника меняется на 500 в определнном отделе
+
+UPDATE vedomost SET ZP=ZP*1.2 WHERE P = 'Сбыт';
+-- ЗП в отделе Сбыт увеличилась на 20%
+
+UPDATE vedomost SET P='Бухгалтерия', ZP=1000 WHERE FIO LIKE  'Иванов%';
+-- Всех ивановых перевели в бух и дали ЗП 1000
+
+
+UPDATE vedomost SET P='Литейный цех', ZP=ZP/1.2 WHERE FIO LIKE  '%';
+-- Всех сотрудников бух перевести в литейных цех и умен ЗП на 20%
+
+INSERT INTO vedomost (FIO) values ('Васичкин')
+-- Вставляет в ведомость новую строчку с фамилией васичкин
+
+UPDATE vedomost SET P='Бухгалтерия', ZP=600 WHERE FIO='Васичкин'
+-- Васичкина определили в отдел и назначили З/П
+
+UPDATE vedomost SET P='Бухгалтерия', ZP=600 WHERE FIO LIKE'Васичкин%' and P IS null
+
+DELETE
+FROM vedomost
+-- Удаляет всё содержимое таблицы
+
+DELETE
+FROM vedomost WHERE FIO LIKE 'Иванов%'
+-- Удаляет всех Ивановых с таблицы
+
+DELETE
+FROM vedomost WHERE id LIKE '5%'
+-- Удаляет с id 5
+
+Drop table vedomost; 
+-- Удаляет всю таблицу
+
+Create table vedomost (id int,FIO varchar(50), ZP real); 
+-- Создание таблицы
