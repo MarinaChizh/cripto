@@ -1,0 +1,28 @@
+#tab {
+    border-collapse: collapse;
+}
+
+#tab td {
+    border: 1px solid black;
+}
+
+#tab tr:hover {
+    background: green;
+}
+
+tr:nth-child(2n) {
+    background: #778899;
+}
+
+tr:nth-child(2n+1) {
+    background: #B0C4DE;
+}
+#ban{
+    position: absolute;
+    transform: rotate3d(0, 0, 1, 20deg);
+    top: 300px;
+    left: 300px;
+    font-size: 80px;
+    color: red;
+    
+}
