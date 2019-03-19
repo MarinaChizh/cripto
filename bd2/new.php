@@ -52,7 +52,9 @@ if (isset($_SESSION['ban']) && ($_SESSION['ban'] + 5) < time()) {
         foreach ($row as $v) {
             echo "<td>" . bb_cod(smile($v)) . "</td>";
         }
-        echo '<td><a href ="del.php?id=' . $row["id"] . '">delete</td><td><a href = "show_edit.php?id=' . $row["id"] . '">edit</td></tr>';
+        echo '<td><a href ="del.php?id=' . $row["id"] . '"><img height="30" src="waste-filled.png" width="30"></p>
+        </td><td><a href = "show_edit.php?id=' . $row["id"] . '"><img height="50" src="Edit_icon-icons.com_71853.png" width="50"></p>
+        </td></tr>';
     }
     echo '</table>';
 
