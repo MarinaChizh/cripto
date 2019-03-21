@@ -46,7 +46,7 @@ SELECT * FROM `customers` WHERE `CITY` LIKE '%n%'
 SELECT * FROM `customers` WHERE `CNAME` LIKE '_e%'
 -- Нашлась вторая буква е
 
--- Функции агрегирования расчитывает группавые характеристики для полей
+-- Функции агрегирования расчитывает групповые характеристики для полей
 -- min    max    avg   count   sum
 SELECT MIN(`AMT`) FROM `Orders`
 SELECT AVG(`AMT`) FROM `Orders`
