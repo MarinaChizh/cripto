@@ -1,0 +1,32 @@
+.chess {
+    border-collapse: collapse;
+}
+
+.chess td {
+    width: 60px;
+    height: 60px;
+}
+
+.chess tr:nth-child(2n) td:nth-child(2n) {
+    background: #778899;
+}
+
+.chess tr:nth-child(2n+1) td:nth-child(2n+1) {
+    background: rgb(52, 55, 59);
+}
+
+.chess tr:nth-child(1) td {
+    background-color: aliceblue !important;
+}
+
+.chess td:nth-child(1) {
+    background-color: aliceblue !important;
+}
+
+.chess td:first-child {
+    text-align: center;
+}
+
+.chess tr:first-child {
+    text-align: center;
+}

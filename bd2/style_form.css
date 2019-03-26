@@ -1,0 +1,36 @@
+form {
+    margin: 0 auto;
+    margin-top: 300 auto;
+    width: 250px;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+    background: RGBA(255, 255, 255, 1);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .45);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#logform input {
+    display: block;
+    margin: 10px auto;
+}
+
+#logform input[type="text"] {
+    transition: background 2s ease;
+}
+
+#logform input[type="text"]:focus {
+    background: green;
+}
+
+#logform input[type="submit"] {
+    background: rgb(154, 221, 28);
+    margin: 30px auto;
+}
+#logform input[type="submit"]:hover  { 
+    background: #C7FE0A; 
+    color: #40BCFE;
+}

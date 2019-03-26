@@ -1,25 +1,33 @@
+<?php 
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Гостевая книга</title>
 </head>
+
 <body>
 
-<pre>
+    <pre>
 <?php
 include "function.php";
-//print_r ($_POST);
-$msg=$_POST["msg"];
-$nik=$_POST["nik"];
-$email=$_POST["email"];
-$date=date( "d.m.y H:i" );
-file_put_contents("DATA.xml",file_get_contents("DATA.xml")."<post>\n<msg>$msg</msg>\n<nik>$nik</nik>\n<email>$email</email>\n<date>$date</date>\n</post>\n");
+
+$msg = $_POST["msg"];
+$nik = $_POST["nik"];
+$email = $_POST["email"];
+$date = date("d.m.y H:i");
+file_put_contents("DATA.xml", file_get_contents("DATA.xml") . "<post>\n<msg>$msg</msg>\n<nik>$nik</nik>\n<email>$email</email>\n<date>$date</date>\n</post>\n");
 $str = file_get_contents("DATA.xml");
 
-// print_r(get_msg_and_nik_from_xml($str))
+
 $post_array = get_msg_and_nik_from_xml(bb_cod(smile(bad($str))));
 
 ?> 
@@ -32,8 +40,8 @@ $post_array = get_msg_and_nik_from_xml(bb_cod(smile(bad($str))));
     <td>Дата сообщения</td>
 </tr>
     <?php
-        foreach ($post_array as $value){
-    echo "<tr>
+    foreach ($post_array as $value) {
+        echo "<tr>
             <td>$value[msg]</td>
             <td>$value[nik]</td>
             <td>$value[email]</td>
@@ -69,4 +77,4 @@ $post_array = get_msg_and_nik_from_xml(bb_cod(smile(bad($str))));
 
 
 </body>
-</html>
+</html> 

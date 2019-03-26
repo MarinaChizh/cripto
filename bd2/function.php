@@ -1,18 +1,17 @@
 <?php
-//Считывает массив из строки xml 
+ //Считывает массив из строки xml 
 function get_msg_and_nik_from_xml($str)
 {
     $matches = null;
-    preg_match_all('/<post>(.*?)(<msg>(.*?)<\/msg>)(.*?)(<nik>(.*?)<\/nik>)(.*?)(<email>(.*?)<\/email>)(.*?)(<date>(.*?)<\/date>)(.*?)<\/post>/ius', $str, $matches);
+    preg_match_all('/<post>(.*?)(<msg>(.*?)<\/msg>)(.*?)(<nik>(.*?)<\/nik>)<\/post>/ius', $str, $matches);
 
     $msg = $matches[3];
     $nik = $matches[6];
-    $email = $matches[9];
-    $date = $matches[12];
+
 
     $array = array();
     foreach ($msg as $key => $value) {
-        $array[] = array("msg" => $msg[$key], "nik" => $nik[$key], "email" => $email[$key], "date" => $date[$key]);
+        $array[] = array("msg" => $msg[$key], "nik" => $nik[$key]);
     }
 
     return  $array;
@@ -30,7 +29,8 @@ function put_array_to_xml($array)
 }
 
 //Переводит bb код
-function bb_cod ($str){
+function bb_cod($str)
+{
     $search = array(
         "/\[b\](.*)\[\/b\]/i",
         "/\[i\](.*)\[\/i\]/i",
@@ -40,16 +40,17 @@ function bb_cod ($str){
     $rep = array(
         "<b>$1</b>",
         "<i>$1</i>",
-        "<u>$1</u>", 
+        "<u>$1</u>",
     );
-$str2 = preg_replace($search, $rep, $str);
-return $str2;
+    $str2 = preg_replace($search, $rep, $str);
+    return $str2;
 }
 
 //Смайлик
-function smile ($str){
+function smile($str)
+{
     $search = array(
-        "/\;\)/", 
+        "/\;\)/",
         "/\:\)/",
         "/\:\-\)/",
     );
@@ -59,32 +60,24 @@ function smile ($str){
         '<img src="S2.png" height="13">',
         '<img src="S3.png" height="13">',
     );
-$str2 = preg_replace($search, $rep, $str);
-return $str2;
-}
-
-
-
-//Плохие слова
-function bad($str)
-{
-    $search = "/дурак|дура|редиска/iu";
-    $rep = '*';
     $str2 = preg_replace($search, $rep, $str);
     return $str2;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-?>
+//Плохие слова
+// function bad($str)
+// {
+//     $search = "/дурак|дура|редиска/iu";
+//     $rep = '*';
+//     $str2 = preg_replace($search, $rep, $str);
+//     return $str2;
+// }
+function bad($str)
+{
+    $pat = "/дурак|дура|редиска/iu";
+    preg_match_all($pat, $str, $arr);
+    return $arr[0];
+}
+ 
