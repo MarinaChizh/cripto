@@ -32,7 +32,8 @@ SELECT `id`, `FIO`, `ZP` FROM `vedomost_norm` WHERE `ZP`< (SELECT AVG(`ZP`) FROM
 
 
 -- 
-SELECT AVG(`ZP`) AS "Средняя ЗП", `RAZRIAD` AS "Разряд", MAX(`PREMIA`) AS "Премия"  FROM `vedomost_norm` GROUP BY `RAZRIAD` ORDER BY `RAZRIAD`
+SELECT COUNT(`RAZRIAD`) AS "Количество", AVG(`ZP`) AS "Средняя ЗП", `RAZRIAD` AS "Разряд", MAX(`PREMIA`) AS "Премия"  FROM `vedomost_norm` GROUP BY `RAZRIAD` ORDER BY `RAZRIAD`
+
 
 
 
