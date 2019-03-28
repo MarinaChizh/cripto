@@ -1,60 +1,69 @@
 $colorblack:black;
 $colorbrown:brown;
 $colorred:red;
-%style_input{
+
+%style_input {
     color: $colorred;
-    &:focus{
-        background: lighten(gray, 30%) ;
+
+    &:focus {
+        background: lighten(gray, 30%);
         transition: all 2s ease-in-out;
-}
+    }
 }
 
 body {
     background: linear-gradient(#E0FFFF, #AFEEEE, #7FFFD4);
+    height: 100%;
+
+}
+
+form {
+    width: 19%;
+    text-align: center;
+    color: $colorbrown;
+    margin-top: 16%;
+    margin-left: 40%;
+    
+fieldset{
+    border-radius: 20%;
+}
+    input {
+        @extend %style_input;
+    }
+
     
 }
 
-fieldset{
-    width: 15%;
-    text-align: center;
-    color: $colorbrown;
-    margin-top: 18%;
-    margin-left: 40%;
-    border-radius: 20%;
-#name{
-    @extend %style_input;
-}
-#email{
-    @extend %style_input;
-}
-}
-#country{
-width: 142px;
+#country {
+    width: 145px;
 }
 
-#iii{
+#submit {
     border-radius: 40%;
-    width:80px;
+    width: 85px;
     height: 80px;
     font-style: oblique;
     font-size: 13px;
     background: linear-gradient(#D0ECF4, #5BC9E1, #D0ECF4);
 
-    &:focus{
+    &:focus {
         background: linear-gradient(rgb(168, 131, 62), rgb(207, 90, 61), rgb(24, 35, 37));
         transition: all 2s ease-in-out;
+    }
+
+    &:hover {
+        color: #9ACD32;
+
+    }
 }
-&:hover{
-    color: #9ACD32;
-    
+
+input {
+    margin: 3%;
 }
-}
-#bl{
-    padding-left: 20px;
+
+#bl {
     background: url('flag_bl.jpg') no-repeat;
     background-size: 20px;
+    padding-left: 20px;
     background-position: 0 1px;
 }
-    
-
-
