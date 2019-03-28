@@ -1,0 +1,56 @@
+fieldset #name, fieldset #email {
+  color: red;
+}
+
+fieldset #name:focus, fieldset #email:focus {
+  background: #cdcdcd;
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
+
+body {
+  background: -webkit-gradient(linear, left top, left bottom, from(#E0FFFF), color-stop(#AFEEEE), to(#7FFFD4));
+  background: linear-gradient(#E0FFFF, #AFEEEE, #7FFFD4);
+}
+
+fieldset {
+  width: 15%;
+  text-align: center;
+  color: brown;
+  margin-top: 18%;
+  margin-left: 40%;
+  border-radius: 20%;
+}
+
+#country {
+  width: 142px;
+}
+
+#iii {
+  border-radius: 40%;
+  width: 80px;
+  height: 80px;
+  font-style: oblique;
+  font-size: 13px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#D0ECF4), color-stop(#5BC9E1), to(#D0ECF4));
+  background: linear-gradient(#D0ECF4, #5BC9E1, #D0ECF4);
+}
+
+#iii:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(#a8833e), color-stop(#cf5a3d), to(#182325));
+  background: linear-gradient(#a8833e, #cf5a3d, #182325);
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
+
+#iii:hover {
+  color: #9ACD32;
+}
+
+#bl {
+  padding-left: 20px;
+  background: url("flag_bl.jpg") no-repeat;
+  background-size: 20px;
+  background-position: 0 1px;
+}
+/*# sourceMappingURL=dz_style.css.map */
