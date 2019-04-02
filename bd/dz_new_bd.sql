@@ -9,3 +9,5 @@ INSERT INTO `comment`(`id`, `name`, `city`, `comment`) VALUES
 (1,'Kate','London','Привет'),
 (2,'Nasty','Brest','Всё супер'),
 (3, 'Alexey','Luxembourg','Good');
+
+DELETE FROM `comment`
