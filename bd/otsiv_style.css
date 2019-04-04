@@ -1,10 +1,19 @@
 body{
     background: #D8BFD8;
     
+    
+    
 
 
 }
+#spasibo{
+    text-align: center;
+    font-size: 50px;
+    color: red;
+}
 #form {
+    padding-top: 2%;
+    padding-bottom: 2%;
     width: 300px;
     text-align: center;
     color: brown;
@@ -39,4 +48,10 @@ body{
 }
 .comment{
     border: 1px solid black;
+}
+div{
+    font-size: 30px;
+}
+.redbord{
+    border: 1px solid red;
 }
