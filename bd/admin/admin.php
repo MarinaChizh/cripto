@@ -1,3 +1,8 @@
+<?
+include "config.php";
+include 'log_check.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +20,7 @@
     <select name="select_order">
 
       <?php
-      include("config.php");
+      
       $fields_list = ['name', 'tel', 'email', 'otziv', 'mark', 'time'];
       $fields_list_description = ['ФИО', 'телефон', 'email', 'отзыв', 'оценка', 'дата отзыва'];
       foreach ($fields_list as $key => $value) {
@@ -30,58 +35,61 @@
   <?php
 
 
-      // получаем номер страницы
-      if (isset($_GET['page'])) $page = ($_GET['page'] - 1);
-      else $page = 0;
+  // получаем номер страницы
+  if (isset($_GET['page'])) $page = ($_GET['page'] - 1);
+  else $page = 0;
 
-      // Первый оператор для LIMIT
-      $start = $page * $per_page;
-      $start1 = $fields_list[$_GET['select_order']];
+  // Первый оператор для LIMIT
+  $start = $page * $per_page;
+  $start1 = $fields_list[$_GET['select_order']];
 
-      // Запрос
+  // Запрос
 
-      //  $res = mysqli_query($mysqli, "SELECT * FROM `table1` ORDER BY $start1 LIMIT  $start, $per_page ");
+  // $res = mysqli_query($mysqli, "SELECT * FROM `table1` ORDER BY $start1 LIMIT  $start, $per_page ");
 
-       $res=mysqli_query($mysqli, "SELECT * FROM `table1` ORDER BY `name` LIMIT $start, $per_page");
+  $res = mysqli_query($mysqli, "SELECT * FROM `table1` ORDER BY `name` LIMIT $start, $per_page");
 
-      // Вывод записи
-      while ($row = mysqli_fetch_array($res)) {
-        ?>
-        <div class="comment">
-          <div> Имя: <?= $row['name'] ?></div>
-                <div> Телефон: <?= $row["tel"] ?></div>
-                    <div> Email: <?= $row["email"] ?></div>
-                    <div> Отзыв: <?= $row["otziv"] ?></div>
-                    <div> Оценка: <?= $row["mark"] ?></div>
-                    <div> Время: <?= $row["time"] ?></div>
-                    </div>
-                                    <?php
-                  }
-                  // $mysqli->close();
+  // Вывод записи
+  
+   while ($row = mysqli_fetch_array($res)) {
+    ?>
+    <div class="comment">
+      <div> Имя: <?= $row['name'] ?></div>
+      <div> Телефон: <?= $row["tel"] ?></div>
+      <div> Email: <?= $row["email"] ?></div>
+      <div> Отзыв: <?= $row["otziv"] ?></div>
+      <div> Оценка: <?= $row["mark"] ?></div>
+      <div> Время: <?= $row["time"] ?></div>
+    </div>
+    <?php
+   }
+    // $mysqli->close();
 
-                  // Ссылки на страницы:
-                  $row = mysqli_fetch_row(mysqli_query($mysqli, "SELECT count(*) FROM `table1`"));
-                  $total_rows = $row[0];
+    // Ссылки на страницы:
+    $row = mysqli_fetch_row(mysqli_query($mysqli, "SELECT count(*) FROM `table1`"));
+    $total_rows = $row[0];
 
-                  $num_pages = ceil($total_rows / $per_page);
-                  $pagination = '';
-                  for ($i = 1; $i <= $num_pages; $i++) {
-                    $pagination .= "<a href='?page=$i&select_order=" . $_GET['select_order'] . "' " . ($_GET['page'] == $i ?: '') . ">$i</a>";
-                  }
-                  echo $pagination;
+    $num_pages = ceil($total_rows / $per_page);
+    $pagination = '';
+    for ($i = 1; $i <= $num_pages; $i++) {
+      $pagination .= "<a href='?page=$i&select_order=" . $_GET['select_order'] . "' " . ($_GET['page'] == $i ?: '') . ">$i</a>";
+    }
+    echo $pagination;
 
 
 
-                  // for($i=1;$i<=$num_pages;$i++) {
-                  //   if ($i-1 == $page) {
-                  //     echo $i." ";
-                  //   } else {
-                  //     echo '<a class="ss" href="'.$_GET['admin.php'].'?page='.$i.'">'.$i."</a> ";
-                  //   }
-                  // }
+    // for($i=1;$i<=$num_pages;$i++) {
+    //   if ($i-1 == $page) {
+    //     echo $i." ";
+    //   } else {
+    //     echo '<a class="ss" href="'.$_GET['admin.php'].'?page='.$i.'">'.$i."</a> ";
+    //   }
+    // }
 
-                  // mysqli_close();
-                  ?>
-</body>
+    // mysqli_close();
+    ?>
+  </body>
+<a href = "admin_new.php">Ссылка</a>
+<a href = "log_out.php">Выйти</a>
 
-</html>
+  </html>

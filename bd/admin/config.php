@@ -10,6 +10,10 @@ if ($mysqli->connect_errno) {
 }
 
 
+$log="login";
+$password="123";
+
+
 
 
 
