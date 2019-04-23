@@ -2,10 +2,12 @@
 class Form
 {
     public $form;
+    public $action;
+    public $method;
 
     function setForm($form)
     {
-        $this->form = $form;
+        $this->form;
         return $this;
     }
 
