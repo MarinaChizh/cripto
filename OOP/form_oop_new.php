@@ -46,24 +46,29 @@ class Form
         return $this;
     }
 
-    
-
     public function addTextarea($attr = "", $text = "")
     {
         $this->addTag("textarea", $attr, $text);
         return $this;
     }
 
-
-
     function show()
     {
-        return"<form action =\"$this->action\" method=\"$this->method\">\n$this->input\n</form>";
+        return "<form action =\"$this->action\" method=\"$this->method\">\n$this->input\n</form>";
     }
 }
 $form = new Form('action.php', 'POST');
-$form->setInput('text', 'login');
-$form->setInput('password', 'password');
-$form->addTextarea('cols="100"');
-$form->setInput('submit', '', 'Отправить');
-echo $form->show();
+echo $form->setInput('text', 'login')
+    ->setInput('password', 'password')
+    ->addTextarea('cols="100"')
+    ->setInput('submit', '', 'Отправить')
+    ->setInput('button', '', 'Кнопка')
+    ->show();
+
+
+
+// $form->setInput('password', 'password');
+// $form->addTextarea('cols="100"');
+// $form->setInput('submit', '', 'Отправить');
+// $form->setInput('button', '', 'Кнопка');
+// echo $form->show();

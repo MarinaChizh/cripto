@@ -1,0 +1,40 @@
+body{
+    background: #D8BFD8;
+}
+ 
+
+#form {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 300px;
+    text-align: center;
+    color: brown;
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: auto auto; */
+    border: 1px solid red;
+    background-color: #DA70D6;
+}
+
+#form textarea {
+    width: 230px;
+    height: 80px;
+
+}
+
+#form input,
+#form textarea {
+    display: block;
+    margin: 0 auto;
+
+}
+#submit {
+    border-radius: 40%;
+    width: 85px;
+    height: 80px;
+    font-style: oblique;
+    font-size: 13px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#D0ECF4), color-stop(#5BC9E1), to(#D0ECF4));
+    background: linear-gradient(#BA55D3, #FF00FF, #9370DB)
+}
