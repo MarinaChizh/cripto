@@ -33,7 +33,7 @@ function printTable($line, $column) {
             $this->innerHTML.="\t<td>$l</td>\n";
         }
         $this->innerHTML.="</tr>\n";
-        $this->arr[]=$l;
+        // $this->arr[]=$l;
         // $this->arr1[]=$c;
     }
 }
@@ -46,9 +46,9 @@ function printTable($line, $column) {
 
 
     
-    public function sort1(){
-        arsort($this->arr);
-    }
+    // public function sort1(){
+    //     arsort($this->arr);
+    // }
 
 
     // public function del($value){
@@ -60,12 +60,12 @@ function printTable($line, $column) {
 $table=new Table(["border" =>"1","width"=>"100%", "cellpadding" =>"5"]);
 
 $table->printTable(5,2);
-$table->sort1();
+// $table->sort1();
 // $table->del(3);
 echo $table->show_table();
 
 // var_dump ($table->arr);
-var_dump ($table->arr);
+// var_dump ($table->arr);
 
 
 
