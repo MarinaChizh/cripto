@@ -3,7 +3,9 @@ class Table{
     private $innerHTML="";
     public $text="";
     private $tableAttr;
-    private $td="";
+     public $arr=[];
+    //  public $arr1=[];
+    
 
     public function __construct($attr)
     {
@@ -19,47 +21,52 @@ class Table{
         return $str;
     }
 
-
-    function pair_tag($line)
-{
-    $this->innerHTML.="\n<$line>" . $this->pair_tag_colomn($column, $text) . "</$line>";
-    return $this;
-}
-
-function pair_tag_colomn($column, $text)
-{
-  $this->innerHTML.="<$column>$text</$column>";
     
-}
 
-function printTable($cols, $rows) {
+
+function printTable($line, $column) {
     
-    for ($r = 0; $r < $rows; $r++) {
-        echo '<tr>';
-        for ($c = 0; $c < $cols; $c++) {
-            echo '<td>TD</td>';
+    for ($l = 0; $l < $line; $l++) {
+        $this->innerHTML.="<tr>\n";
+        
+        for ($c = 0; $c < $column; $c++) {
+            $this->innerHTML.="\t<td>$l</td>\n";
         }
-        echo '</tr>';
+        $this->innerHTML.="</tr>\n";
+        $this->arr[]=$l;
+        // $this->arr1[]=$c;
     }
-    
 }
- 
-
 
 
 
     function show_table(){
-        return "<table " . $this->attr_array_to_string($this->tableAttr) . "> ".$this->printTable($cols, $rows)." </table>";
+        return "<table " . $this->attr_array_to_string($this->tableAttr) . ">\n $this->innerHTML </table>\n";
     }
+
+
+    
+    public function sort1(){
+        arsort($this->arr);
+    }
+
+
+    // public function del($value){
+    //     unset($this->arr1[$value]);
+    // }
+    
     
 }
 $table=new Table(["border" =>"1","width"=>"100%", "cellpadding" =>"5"]);
-// $table->pair_tag("tr");
-// $table->pair_tag_colomn("td", 123);
-// $table->pair_tag_colomn("td", 123);
-$table->printTable(1,2);
 
+$table->printTable(5,2);
+$table->sort1();
+// $table->del(3);
 echo $table->show_table();
+
+// var_dump ($table->arr);
+var_dump ($table->arr);
+
 
 
 
