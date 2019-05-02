@@ -33,7 +33,11 @@ class User
 
     function setAge($age)
     {
-        $this->age = $age;
+        if ($this->check_age($age)) {
+            $this->age = $age;
+        } else {
+            $this->age = null;
+        }
     }
     function getAge()
     {
@@ -43,40 +47,47 @@ class User
     {
         return "Имя: $this->name Фамилия: $this->surname Возраст: $this->age ";
     }
+
+    function check_age($age)
+    { }
 }
 
 class Student extends User
 {
 
-    function setAge($age)
+    function check_age($age)
     {
-        $this->age = $age;
+        if ($age >= 18 && $age <= 25) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
-    // function setAge($age){
-    // // {
-
-    // //     // if (($age >= 18) && ($age <= 25)) {
-    // //         $this->age = $age;
-    // //     // } else {
-    // //     //     $this->age = Null;
-    // //     // }
-    // $this->age = $age;
-
-    // }
 }
 
-// class Worker extends User
-// { }
+class Worker extends User
+{
+
+    function check_age($age)
+    {
+        if ($age >= 18 && $age <= 63) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 
 
 
-$user = new User('Витя', 'Пупкин', '82');
+
+
+$user = new User('Витя', 'Пупкин', '22');
 echo $user->info();
 echo "<hr>";
-
-
 $student = new Student('Петя', 'Пупкин', '22');
-$student->setAge(22);
 echo $student->info();
+echo "<hr>";
+$worker = new Worker("Гена", "Фил", "25");
+echo $worker->info();
