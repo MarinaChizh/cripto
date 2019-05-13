@@ -1,24 +1,19 @@
 <?php
-class Igra{
-    private $line=3;
-    private $innerHTML="";
+$rows = 3; 
+$cols = 3; 
 
-    
-    public function table(){
-        for ($l = 0; $l < $this->line; $l++) {
-            $this->innerHTML.="<tr>\n";
-            
-            for ($c = 0; $c < $this->line; $c++) {
-                $this->innerHTML.="\t<td></td>\n";
-            }
-            $this->innerHTML.="</tr>\n";
+$table = '<table border="1">';
+
+for ($tr=1; $tr<=$rows; $tr++){
+    $table .= '<tr>';
+    for ($td=1; $td<=$cols; $td++){
+        $table .= '<td>'.'</td>';
     }
-    
-    
+    $table .= '</tr>';
 }
-}
-$igra = new Igra;
-echo $igra->table();
+
+$table .= '</table>';
+echo $table;
 
 
 
