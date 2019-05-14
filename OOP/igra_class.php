@@ -9,13 +9,13 @@ class TicTacGame {
     /*
      * Размер игрового поля
      */
-    private $fieldWidth = 20;
-    private $fieldHeight = 20;
+    private $fieldWidth = 10;
+    private $fieldHeight = 10;
     
     /**
      * @var число крестиков или ноликов в ряд для победы.
      */
-    private $countToWin = 5;
+    private $countToWin = 3;
     
     /**
      * @var массив сделанных ходов вида $field[$x][$y] = $player;

@@ -1,0 +1,9 @@
+/* .tic_tac{
+    border: 1px solid red;
+} */
+.tic_tac td{
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
