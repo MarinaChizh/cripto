@@ -20,7 +20,7 @@ require_once "comp_igra.php";
 
 <?
 // $obj = new Tic_Tac_Toe (3);
-$obj = new Igra (3);
+$obj = new Igra (4);
 $obj -> put_cross();
 $obj->show();
 $obj -> put_circle();
