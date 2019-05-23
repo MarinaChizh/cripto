@@ -66,6 +66,11 @@ class Tic_Tac_Toe
         return ($i >= $size || $j >= $size || $i < 0 || $j < 0) ? false : true;
     }
 
+    protected function get_size()
+    {
+        $size = count($this->array);
+        return $size;
+    }
     function check_move($player)
     {
         if ($player == $this->move) {
@@ -105,63 +110,62 @@ class Tic_Tac_Toe
         }
     }
 
-        function check_winner_by_col($array)
-        {
-           return $this->check_winner_by_row($this->transpose($array));
-        }
+    function check_winner_by_col($array)
+    {
+        return $this->check_winner_by_row($this->transpose($array));
+    }
 
-        function check_winner_by_diagonal($array)
-        {
-            $size = count($array);
-            $cross_count = 0;
-            $circle_count = 0;
-            $cross_count2 = 0;
-            $circle_count2 = 0;
-            for ($i = 0; $i < $size; $i++) {
-                if ($array[$i][$i] == "O") {
-                    $circle_count++;
-                }
-                if ($array[$i][$i] == "X") {
-                    $cross_count++;
-                }
-                if ($array[$i][$size-$i-1] == "O") {
-                    $circle_count2++;
-                }
-                if ($array[$i][$size-$i-1] == "X") {
-                    $cross_count2++;
-                }
+    function check_winner_by_diagonal($array)
+    {
+        $size = count($array);
+        $cross_count = 0;
+        $circle_count = 0;
+        $cross_count2 = 0;
+        $circle_count2 = 0;
+        for ($i = 0; $i < $size; $i++) {
+            if ($array[$i][$i] == "O") {
+                $circle_count++;
+            }
+            if ($array[$i][$i] == "X") {
+                $cross_count++;
+            }
+            if ($array[$i][$size - $i - 1] == "O") {
+                $circle_count2++;
+            }
+            if ($array[$i][$size - $i - 1] == "X") {
+                $cross_count2++;
+            }
         }
-        if ($circle_count==$size || $circle_count2==$size){
+        if ($circle_count == $size || $circle_count2 == $size) {
             return "O";
         }
-        if ($cross_count==$size || $cross_count2==$size){
+        if ($cross_count == $size || $cross_count2 == $size) {
             return "X";
         }
         return '';
     }
 
-        function check_winner_by_row($array)
-        {
-            $size = count($array);
-            foreach ($array as $v) {
-                $cross_count = 0;
-                $circle_count = 0;
-                foreach ($v as $val) {
-                    if ($val == "X") {
-                        $cross_count++;
-                    }
-                    if ($val == "O") {
-                        $circle_count++;
-                    }
+    function check_winner_by_row($array)
+    {
+        $size = count($array);
+        foreach ($array as $v) {
+            $cross_count = 0;
+            $circle_count = 0;
+            foreach ($v as $val) {
+                if ($val == "X") {
+                    $cross_count++;
                 }
-                if ($cross_count == $size) {
-                    return "X";
-                }
-                if ($circle_count == $size) {
-                    return "O";
+                if ($val == "O") {
+                    $circle_count++;
                 }
             }
-            return "";
+            if ($cross_count == $size) {
+                return "X";
+            }
+            if ($circle_count == $size) {
+                return "O";
+            }
         }
-    
+        return "";
+    }
 }

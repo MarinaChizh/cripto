@@ -6,6 +6,7 @@ require_once "comp_igra.php";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +14,40 @@ require_once "comp_igra.php";
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 
 <?
 // $obj = new Tic_Tac_Toe (3);
-$obj = new Igra (4);
-$obj -> put_cross();
+$obj = new Igra(3);
+$obj->random_put_circle();
+$obj->random_put_cross();
 $obj->show();
-$obj -> put_circle();
+$obj->random_put_circle();
+$obj->random_put_cross();
+$obj->show();
+$obj->random_put_circle();
+$obj->random_put_cross();
+$obj->show();
+$obj->random_put_circle();
+$obj->random_put_cross();
 $obj->show();
 echo $obj->check_winner();
+
+
+// $obj -> put_cross();
+// $obj->show();
+// $obj -> put_circle();
+// $obj->show();
+// $obj -> put_cross();
+// $obj->show();
+// echo $obj->check_winner();
+
+
 // столбец Х
 // $obj->show();
 // $obj->put_circle(3,1);
@@ -112,5 +134,3 @@ echo $obj->check_winner();
 // $obj->put_circle(0,2);
 // $obj->show();
 // echo $obj->check_winner();
-
-
