@@ -3,7 +3,7 @@
 class Tic_Tac_Toe
 {
 
-    protected $array;
+    public $array;
     protected $move;
 
     function create_array($size)
@@ -19,7 +19,7 @@ class Tic_Tac_Toe
     function __construct($size)
     {
         $this->create_array($size);
-        if (round(rand(0, 0))) {
+        if (round(rand(1, 1))) {
             $this->move = 'cross';
         } else {
             $this->move = 'circle';
@@ -39,23 +39,23 @@ class Tic_Tac_Toe
         echo '</table><hr>';
     }
 
-    // function put_cross($i, $j)
-    // {
-    //     if ($this->in_matrix($i, $j) && $this->is_empty($i, $j) && $this->check_move('cross')) {
-    //         $this->array[$i][$j] = 'X';
-    //         $this->turn_move();
-    //     }
-    // }
+    function put_cross($i, $j)
+    {
+        if ($this->in_matrix($i, $j) && $this->is_empty($i, $j) && $this->check_move('cross')) {
+            $this->array[$i][$j] = 'X';
+            $this->turn_move();
+        }
+    }
 
-    // function put_circle($i, $j)
-    // {
-    //     if ($this->in_matrix($i, $j) && $this->is_empty($i, $j) && $this->check_move('circle')) {
-    //         $this->array[$i][$j] = 'O';
-    //         $this->turn_move();
-    //     }
-    // }
+    function put_circle($i, $j)
+    {
+        if ($this->in_matrix($i, $j) && $this->is_empty($i, $j) && $this->check_move('circle')) {
+            $this->array[$i][$j] = 'O';
+            $this->turn_move();
+        }
+    }
 
-    protected function is_empty($i, $j)
+    public function is_empty($i, $j)
     {
         return $this->array[$i][$j] == '' ? true : false;
     }
@@ -66,11 +66,6 @@ class Tic_Tac_Toe
         return ($i >= $size || $j >= $size || $i < 0 || $j < 0) ? false : true;
     }
 
-    protected function get_size()
-    {
-        $size = count($this->array);
-        return $size;
-    }
     function check_move($player)
     {
         if ($player == $this->move) {
@@ -102,12 +97,13 @@ class Tic_Tac_Toe
     function check_winner()
     {
         if ($this->check_winner_by_col($this->array) != '') {
-            return  $this->check_winner_by_col($this->array);
+            return $this->check_winner_by_col($this->array);
         } else if ($this->check_winner_by_row($this->array) != '') {
-            return  $this->check_winner_by_row($this->array);
+            return $this->check_winner_by_row($this->array);
         } else if ($this->check_winner_by_diagonal($this->array) != '') {
             return $this->check_winner_by_diagonal($this->array);
         }
+        return '';
     }
 
     function check_winner_by_col($array)
@@ -166,6 +162,8 @@ class Tic_Tac_Toe
                 return "O";
             }
         }
-        return "";
+        return '';
     }
 }
+
+
