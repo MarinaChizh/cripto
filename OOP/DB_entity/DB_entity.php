@@ -11,6 +11,7 @@ class DB_entity
         "HAVING" => NULL,
         "ORDER BY" => NULL,
         "LIMIT" => NULL
+        
     ];
 
 
@@ -125,6 +126,29 @@ class DB_entity
         $this->current_select['LIKE'] = !empty($this->current_select['LIKE']) ? $this->current_select['LIKE'] . "$str" : $str;
         return $this;
     }
+    
+    function reset_having_condition(){
+        unset($this->current_select['HAVING']);
+        return $this;
+    }
 
+    function get_fields(){
+    //    echo 'SHOW COLUMNS FROM'.$this->table_name;
+        return array_column($this->result_query_table($this->execute_sql('SHOW COLUMNS FROM '.$this->table_name)), 'Field');
+    }
 
+    //Удаляет сроку
+    function delete($id){
+        $this->execute_sql('DELETE FROM '.$this->table_name. ' WHERE id = '.$id);
+        return $this->link->affected_rows; 
+    }
+
+    function add($array){
+    
+            $this->execute_sql('INSERT INTO '.$this->table_name. ("$array"). VALUES ("$array"));
+            
+        }
+        
+    }
+    // INSERT INTO `db_entity` (`id`, `FIO`, `CITY`, `RATING`) VALUES (NULL, 'Юлия', 'Лондон', '150');
 }
