@@ -18,6 +18,8 @@ class DB_entity
 
     public $current_select = [];
     public $error_list =[];
+    public $page_size = 3;
+   
 
     function __construct($link, $table_name)
     {
@@ -104,6 +106,17 @@ class DB_entity
         return $this;
     }
 
+    function set_page_size($size){
+        $this->page_size = $size;
+        return $this;
+    }
+
+    function set_page($page){
+        $this->current_select['LIMIT'] = $page*$this->page_size.", $this->page_size";
+        return $this;
+
+    }
+
     function add_group_by($str){
         $this->current_select['GROUP BY'] =  !empty($this->current_select['GROUP BY']) ? $this->current_select['GROUP BY'] . ", $str" : $str;
         return $this;
@@ -139,16 +152,35 @@ class DB_entity
 
     //Удаляет сроку
     function delete($id){
-        $this->execute_sql('DELETE FROM '.$this->table_name. ' WHERE id = '.$id);
+        $this->execute_sql("DELETE FROM $this->table_name WHERE id = $id");
         return $this->link->affected_rows; 
     }
 
     function add($array){
     
-            $this->execute_sql('INSERT INTO '.$this->table_name. ("$array"). VALUES ("$array"));
+        $this->execute_sql("INSERT INTO `$this->table_name` (".implode(',', array_keys($array)).") VALUES ('".implode("','", $array)."')");
             
         }
-        
-    }
-    // INSERT INTO `db_entity` (`id`, `FIO`, `CITY`, `RATING`) VALUES (NULL, 'Юлия', 'Лондон', '150');
+
+        function row_count(){
+           return $this->result_query_table($this->execute_sql("SELECT COUNT(*) AS C FROM $this->table_name"))[0]['C'] ;
+        }
+
+        function page_count(){
+            return ceil($this->row_count()/$this->page_size);
+        }
+
+        function delete_all_rows(){
+            $this->execute_sql("DELETE FROM $this->table_name");
+            return $this->link->affected_rows; 
+        }
+
+function delete_table(){
+    
 }
+        
+        
+        }
+    
+    
+
