@@ -11,15 +11,15 @@ class DB_entity
         "HAVING" => NULL,
         "ORDER BY" => NULL,
         "LIMIT" => NULL
-        
+
     ];
 
 
 
     public $current_select = [];
-    public $error_list =[];
-    public $page_size = 3;
-   
+    public $error_list = [];
+    public $page_size = 2;
+
 
     function __construct($link, $table_name)
     {
@@ -43,37 +43,39 @@ class DB_entity
     function query()
     {
         $query_result = $this->execute_sql($this->get_sql());
-        if ($query_result !==false){
+        if ($query_result !== false) {
             return $this->result_query_table($query_result);
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    protected function execute_sql($sql){
+    protected function execute_sql($sql)
+    {
         $query_result = $this->link->query($sql);
         $this->error_list[] = $this->link->error;
         return $query_result;
     }
 
-    protected function result_query_table($query_result){
+    protected function result_query_table($query_result)
+    {
         $result = [];
-        while ($row = $query_result->fetch_assoc()){
+        while ($row = $query_result->fetch_assoc()) {
             $result[] = $row;
         }
         return $result;
     }
 
-    function reset_defaut_select(){
-        $this->current_select=[];
+    function reset_defaut_select()
+    {
+        $this->current_select = [];
         $this->current_select['FROM'] = $this->table_name;
         return $this;
     }
     // Выводит только заданное условие $str. Напримет CITY = Витебск
     function add_where_condition($str)
     {
-        $this->current_select['WHERE'] = !empty($this->current_select['WHERE']) ? $this->current_select['WHERE'] . "AND $str" : $str;
+        $this->current_select['WHERE'] = !empty($this->current_select['WHERE']) ? $this->current_select['WHERE'] . " AND $str" : $str;
         return $this;
     }
     // Удаляет условия запроса
@@ -106,18 +108,20 @@ class DB_entity
         return $this;
     }
 
-    function set_page_size($size){
+    function set_page_size($size)
+    {
         $this->page_size = $size;
         return $this;
     }
 
-    function set_page($page){
-        $this->current_select['LIMIT'] = $page*$this->page_size.", $this->page_size";
+    function set_page($page)
+    {
+        $this->current_select['LIMIT'] = $page * $this->page_size . ", $this->page_size";
         return $this;
-
     }
 
-    function add_group_by($str){
+    function add_group_by($str)
+    {
         $this->current_select['GROUP BY'] =  !empty($this->current_select['GROUP BY']) ? $this->current_select['GROUP BY'] . ", $str" : $str;
         return $this;
     }
@@ -133,54 +137,68 @@ class DB_entity
         unset($this->current_select['HAVING']);
         return $this;
     }
-    
+
     function add_like($str)
     {
         $this->current_select['LIKE'] = !empty($this->current_select['LIKE']) ? $this->current_select['LIKE'] . "$str" : $str;
         return $this;
     }
-    
-    function reset_having_condition(){
+
+    function reset_having_condition()
+    {
         unset($this->current_select['HAVING']);
         return $this;
     }
 
-    function get_fields(){
-    //    echo 'SHOW COLUMNS FROM'.$this->table_name;
-        return array_column($this->result_query_table($this->execute_sql('SHOW COLUMNS FROM '.$this->table_name)), 'Field');
+    function get_fields()
+    {
+        //    echo 'SHOW COLUMNS FROM'.$this->table_name;
+        return array_column($this->result_query_table($this->execute_sql('SHOW COLUMNS FROM ' . $this->table_name)), 'Field');
     }
 
     //Удаляет сроку
-    function delete($id){
+    function delete($id)
+    {
         $this->execute_sql("DELETE FROM $this->table_name WHERE id = $id");
-        return $this->link->affected_rows; 
+        return $this->link->affected_rows;
     }
 
-    function add($array){
-    
-        $this->execute_sql("INSERT INTO `$this->table_name` (".implode(',', array_keys($array)).") VALUES ('".implode("','", $array)."')");
-            
-        }
+    function add($array)
+    {
 
-        function row_count(){
-           return $this->result_query_table($this->execute_sql("SELECT COUNT(*) AS C FROM $this->table_name"))[0]['C'] ;
-        }
+        $this->execute_sql("INSERT INTO `$this->table_name` (" . implode(',', array_keys($array)) . ") VALUES ('" . implode("','", $array) . "')");
+    }
 
-        function page_count(){
-            return ceil($this->row_count()/$this->page_size);
-        }
+    function row_count()
+    {
+        return $this->result_query_table($this->execute_sql("SELECT COUNT(*) AS C FROM $this->table_name"))[0]['C'];
+    }
 
-        function delete_all_rows(){
-            $this->execute_sql("DELETE FROM $this->table_name");
-            return $this->link->affected_rows; 
-        }
+    function page_count()
+    {
+        return ceil($this->row_count() / $this->page_size);
+    }
 
-function delete_table(){
-    
+    function delete_all_rows()
+    {
+        $this->execute_sql("DELETE FROM $this->table_name");
+        return $this->link->affected_rows;
+    }
+
+    function update($id, $arr)
+    {
+        $new_arr = [];
+        foreach ($arr as $key => $value) {
+            $new_arr[] = "$key='$value'";
+        }
+        $this->execute_sql("UPDATE `$this->table_name` SET " . implode(', ', $new_arr) . " WHERE id = $id");
+        
+    }
+
+    function get_row_by_id($id)
+    {
+        $arr=$this->add_where_condition("id= $id")->query()[0];
+        unset($arr['id']);
+        return $arr;
+    }
 }
-        
-        
-        }
-    
-    
-

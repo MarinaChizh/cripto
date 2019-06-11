@@ -11,7 +11,8 @@
 <body>
     <?php
     include_once "DB_entity.php";
-    $link = mysqli_connect("127.0.0.1", "root", "", "mydb");
+    include_once "config.php";
+    $link = mysqli_connect($conf['host'], $conf['nik'], $conf['password'], $conf['bd']);
     $DB = new DB_entity($link, 'db_entity');
 
     function show($table, $fields, $ordered_field = null)
@@ -68,13 +69,11 @@
 
     ?>
     <form name="" method="post" action="">
-    
         <?php
         foreach (array_diff($DB->get_fields(), ['id']) as $value) {
-            echo "<label for='" . $value . "'>$value<label><br><input type='text' name='" . $value . "' id='" . $value . "'><br><br>\n";
+            echo "\t<label for='" . $value . "'>$value<label><br><input type='text' name='" . $value . "' id='" . $value . "'><br><br>\n";
         }
         ?>
-        
         <input type="submit" name="" value="Отправить">
 
 
@@ -83,29 +82,30 @@
             $DB->add(array_intersect_key($_POST, array_flip($DB->get_fields())));
         }
         // $DB->order_by_asc($_GET['order']);
-        echo $DB->row_count();
         // echo $DB->add($_POST);
-        show($DB->query(), $DB->get_fields());
         // $DB->set_page_size(2);
         // $DB->set_page(1);
-        isset($_GET['delete']) ? $DB->delete($_GET['delete']) : "";
         // show($DB->query(), $DB->get_fields(), $_GET['order']);
-       echo $DB->page_count();
-      if (isset($_GET['page'])){
-          $DB->set_page($_GET['page']);
-      }
-        show($DB->query(), $DB->get_fields());
-        // $DB->page_count();
-
-        for ($i = 0; $i < $DB->page_count(); $i++){
-            echo "<a href='?page=$i'>".($i+1)." |</a>";
-        }
+        // $DB->show($DB->query(), $DB->get_fields());
         // $DB->delete_all_rows();
-
+        isset($_GET['delete']) ? $DB->delete($_GET['delete']) : "";
+        echo $DB->row_count();
+        $DB->update(67, ['FIO' => 'hgfjhjdh']);
         ?>
     </form>
 
+    <?php
+    show($DB->query(), $DB->get_fields());
+    echo $DB->page_count();
+    if (isset($_GET['page'])) {
+        $DB->set_page($_GET['page']);
+    }
+    $DB->page_count();
 
+    for ($i = 0; $i < $DB->page_count(); $i++) {
+        echo "<a href='?page=$i'>" . ($i + 1) . " |</a>";
+    }
+    ?>
 
 
 </body>
