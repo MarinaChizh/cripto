@@ -24,7 +24,8 @@
 
             foreach ($fields as $value) {
 
-                echo "<th style='border:1px solid black'><a href='?order=$value'>$value" . ($ordered_field == $value ? " ⬆️" : "") . "</a></th>";
+                echo "<th style='border:1px solid black'><a href='?order=$value'>$value" . ($ordered_field == $value ? (isset($_GET['dir']) ? "" : "&dir=desc") : "") . "'>$value" .
+                ($ordered_field == $value ? (isset($_GET['dir']) ? "" : "") : "") . "</a></th>";
             }
             echo "<td>Delete</td></tr>";
 
