@@ -5,7 +5,7 @@ include_once "DB_entity.php";
     $DB = new DB_entity($link, 'db_entity');
 
     $DB->update($_GET['name'], $_POST);
-    header('location:proect.php');
+    header('location:bootstrap.php');
 
 
 
