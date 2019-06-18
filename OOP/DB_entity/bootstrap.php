@@ -92,7 +92,7 @@ if (isset($_GET['order'])) {
 
     $DB->set_page_size(($conf['page_size']));
 
-    if (isset($_GET['page'])&&($_GET['page']<($DB->page_count()-1)&&($_GET['page']>=0))) {
+    if (isset($_GET['page'])&&($_GET['page']<=($DB->page_count()-1)&&($_GET['page']>=0))) {
         $DB->set_page($_GET['page']);
 
     } else {
@@ -107,7 +107,7 @@ if (isset($_GET['order'])) {
     for ($i = 0; $i < $DB->page_count(); $i++) {
         $pages .= "<li class='page-item". ($_GET['page'] == $i ? " active" : "") ."'><a class='page-link' href='?page=$i" . (isset($_GET['order']) ? "&order=$_GET[order]" : '') . (isset($_GET['dir']) ? "&dir=$_GET[dir]" : '') . "'>". ($i + 1) ."</a></li>";
     }
-   $pages .='<a class="page-link" href="?page='.($_GET['page'] < ($DB->page_count()-1) ? ($_GET["page"]+1 ) : ($DB->page_count()-1)).'" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></ul></nav>';
+   $pages .='<a class="page-link" href="?page='.($_GET['page'] < ($DB->page_count()-1) ? ($_GET["page"]+1) : ($DB->page_count()-1)).'" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></ul></nav>';
 
     echo "<nav aria-label='Page navigation example'><ul class='pagination'>$pages</ul></nav>";
     show($DB->query(), $DB->get_fields(), $_GET['order']);
