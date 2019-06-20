@@ -156,6 +156,15 @@ class DB_entity
         return array_column($this->result_query_table($this->execute_sql('SHOW COLUMNS FROM ' . $this->table_name)), 'Field');
     }
 
+    function get_comments()
+    {
+
+        $com_nam = $this->result_query_table($this->execute_sql("SELECT COLUMN_COMMENT, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = '$this->table_name'"));
+        return array_combine(array_column($com_nam, 'COLUMN_NAME'), array_column($com_nam, 'COLUMN_COMMENT'));
+    }
+
+
+
     //Удаляет сроку
     function delete($id)
     {
@@ -192,13 +201,16 @@ class DB_entity
             $new_arr[] = "$key='$value'";
         }
         $this->execute_sql("UPDATE `$this->table_name` SET " . implode(', ', $new_arr) . " WHERE id = $id");
-        
     }
 
     function get_row_by_id($id)
     {
-        $arr=$this->add_where_condition("id= $id")->query()[0];
+        $arr = $this->add_where_condition("id= $id")->query()[0];
         unset($arr['id']);
         return $arr;
     }
 }
+
+// SELECT COLUMN_COMMENT
+// FROM information_schema.COLUMNS a 
+// WHERE TABLE_NAME = 'db_entity';

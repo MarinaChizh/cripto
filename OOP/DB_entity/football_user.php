@@ -13,14 +13,22 @@
     <title>Hello, world!</title>
   </head>
   <body class="p-3 mb-2 bg-white text-dark">
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-2">
+      
+    </div>
+    <div class="col-md-auto">
+
     <?php
 include_once "DB_entity.php";
 include_once "config.php";
-// include_once "style_proect.css";
 $link = mysqli_connect($conf['host'], $conf['nik'], $conf['password'], $conf['bd']);
-$DB = new DB_entity($link, 'db_entity');
+$DB = new DB_entity($link, 'football');
 
 
+      
+    
 function show($table, $fields, $ordered_field = null, $fild_comments = null)
 {
     if (is_array($table)) {
@@ -34,7 +42,7 @@ function show($table, $fields, $ordered_field = null, $fild_comments = null)
             ($ordered_field == $value ? (isset($_GET['dir']) ? "" : "&dir=desc") : "") . "'>".(empty($fild_comments[$value]) ? $value : $fild_comments[$value]) . 
             ($ordered_field == $value ? (isset($_GET['dir']) ? "⬆️" : "⬇") : "") . "</a></th>";
         }
-        echo "<th>Delete</th><th>Edit</th></tr>";
+        // echo "<th>Delete</th><th>Edit</th></tr>";
 
 
 
@@ -43,8 +51,9 @@ function show($table, $fields, $ordered_field = null, $fild_comments = null)
             foreach ($v as  $val) {
                 echo "\t<td>$val</td>";
             }
-            echo "<td><a href='?delete=$v[id]' class='delete'></a></td>" .
-                "<td><a href='edit.php?id=$v[id]' class='edit'></a></td>" .
+            echo 
+            // "<td><a href='?delete=$v[id]' class='delete'></a></td>" .
+            //     "<td><a href='edit_football.php?id=$v[id]' class='edit'></a></td>" .
                 "</tr>";
         }
 
@@ -66,14 +75,18 @@ if (isset($_GET['order'])) {
 
 
 ?>
-  <form name="" method="post" action=""> 
+</div>
+    <div class="col col-lg-2">
+      
+    </div>
+  <!-- <form name="" method="post" action="">  -->
   <!-- <div class="form-group"> -->
-    <?php
-    foreach (array_diff($DB->get_fields(), ['id']) as $value) {
-        echo "\t<label for='" . $value . "'>$value</label><br><input type='text' name='" . $value . "' id='" . $value . "'><br>\n";
-    }
+    <!-- <?php 
+    // foreach (array_diff($DB->get_fields(), ['id']) as $value) {
+        // echo "\t<label for='" . $value . "'>$value</label><br><input type='text' name='" . $value . "' id='" . $value . "'><br>\n";
+    // }
     ?>
-    <input type="submit" name="" value="Отправить"></form><br>
+    <input type="submit" name="" value="Отправить"></form><br> -->
     
 
 
@@ -89,34 +102,34 @@ if (isset($_GET['order'])) {
 
     <?php
     // $DB->order_by_asc($_GET['order']);
-    isset($_GET['delete']) ? $DB->delete($_GET['delete']) : "";
-    $DB->page_count();
+    // isset($_GET['delete']) ? $DB->delete($_GET['delete']) : "";
+    // $DB->page_count();
 
-    $DB->set_page_size(($conf['page_size']));
+    // $DB->set_page_size(($conf['page_size']));
 
-    if (isset($_GET['page'])&&($_GET['page']<=($DB->page_count()-1)&&($_GET['page']>=0))) {
-        $DB->set_page($_GET['page']);
+    // if (isset($_GET['page'])&&($_GET['page']<=($DB->page_count()-1)&&($_GET['page']>=0))) {
+    //     $DB->set_page($_GET['page']);
 
-    } else {
-        $DB->set_page(0);
-        $_GET['page']=0;
-    }
+    // } else {
+    //     $DB->set_page(0);
+    //     $_GET['page']=0;
+    // }
                                                                                                                 
-    $pages='<nav aria-label="Page navigation example"><ul class="pagination"> <a class="page-link" href="?page='.($_GET['page'] > 0 ? ($_GET["page"]-1 ) : $_GET["page"]=0).'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+    // $pages='<nav aria-label="Page navigation example"><ul class="pagination"> <a class="page-link" href="?page='.($_GET['page'] > 0 ? ($_GET["page"]-1 ) : $_GET["page"]=0).'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
       
       
 
-    for ($i = 0; $i < $DB->page_count(); $i++) {
-        $pages .= "<li class='page-item". ($_GET['page'] == $i ? " active" : "") ."'><a class='page-link' href='?page=$i" . (isset($_GET['order']) ? "&order=$_GET[order]" : '') . (isset($_GET['dir']) ? "&dir=$_GET[dir]" : '') . "'>". ($i + 1) ."</a></li>";
-    }
-   $pages .='<a class="page-link" href="?page='.($_GET['page'] < ($DB->page_count()-1) ? ($_GET["page"]+1) : ($DB->page_count()-1)).'" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></ul></nav>';
+//     for ($i = 0; $i < $DB->page_count(); $i++) {
+//         $pages .= "<li class='page-item". ($_GET['page'] == $i ? " active" : "") ."'><a class='page-link' href='?page=$i" . (isset($_GET['order']) ? "&order=$_GET[order]" : '') . (isset($_GET['dir']) ? "&dir=$_GET[dir]" : '') . "'>". ($i + 1) ."</a></li>";
+//     }
+//    $pages .='<a class="page-link" href="?page='.($_GET['page'] < ($DB->page_count()-1) ? ($_GET["page"]+1) : ($DB->page_count()-1)).'" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></ul></nav>';
 
-    echo "<nav aria-label='Page navigation example'><ul class='pagination'>$pages</ul></nav>";
-    $DB->get_sql();
-    print_r(($DB->get_comments()));
+//     echo "<nav aria-label='Page navigation example'><ul class='pagination'>$pages</ul></nav>";
+//     $DB->get_sql();
+    // print_r(($DB->get_comments()));
     show($DB->query(), $DB->get_fields(), $_GET['order'], $DB->get_comments());
     
-    echo $pages;
+    // echo $pages;
 
 
 

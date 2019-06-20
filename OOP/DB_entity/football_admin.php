@@ -18,7 +18,7 @@ include_once "DB_entity.php";
 include_once "config.php";
 // include_once "style_proect.css";
 $link = mysqli_connect($conf['host'], $conf['nik'], $conf['password'], $conf['bd']);
-$DB = new DB_entity($link, 'db_entity');
+$DB = new DB_entity($link, 'football');
 
 
 function show($table, $fields, $ordered_field = null, $fild_comments = null)
@@ -44,7 +44,7 @@ function show($table, $fields, $ordered_field = null, $fild_comments = null)
                 echo "\t<td>$val</td>";
             }
             echo "<td><a href='?delete=$v[id]' class='delete'></a></td>" .
-                "<td><a href='edit.php?id=$v[id]' class='edit'></a></td>" .
+                "<td><a href='edit_football.php?id=$v[id]' class='edit'></a></td>" .
                 "</tr>";
         }
 
