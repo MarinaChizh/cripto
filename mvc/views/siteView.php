@@ -13,12 +13,12 @@ class siteView{
         $this->viewData = $viewData;
 
         extract($this->viewData);
-        include'views/mainLayout.php';
+        include 'views/mainLayout.php';
     }
 
     function body(){
         extract($this->viewData);
-        include'views/site/' . $this->viewName . '.php';
+        include 'views/site/' . $this->viewName . '.php';
     }
 }
 

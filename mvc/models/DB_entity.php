@@ -18,7 +18,7 @@ class DB_entity
 
     public $current_select = [];
     public $error_list = [];
-    public $page_size = 2;
+    public $page_size = 1;
 
 
     function __construct($link, $table_name)
