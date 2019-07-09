@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+abstract class Controller
 {
 
     public $view;
@@ -29,4 +29,6 @@ class Controller
     {
         return strtolower(preg_replace('/^action/', '', debug_backtrace()[1]['function']));
     }
+
+    
 }

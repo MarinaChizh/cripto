@@ -1,5 +1,5 @@
 <?php
-$conf['host'] = "127.0.0.1";
+$conf['host'] = "localhost";
 $conf['nik'] = "root";
 $conf['password'] = "";
 $conf['bd'] = "mydb";
