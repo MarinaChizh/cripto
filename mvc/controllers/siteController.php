@@ -5,8 +5,13 @@
             'title' => "home",
             'table' => "Добро пожаловать"]);
      }
+    
+    function actionAbout(){
+        $this->render("about", [
+            'title' => "About Us"
+        ]);
     }
-    //  function action_about();
+}
  
 
  

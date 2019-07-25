@@ -27,13 +27,13 @@ foreach($table as $v){
     // echo "</tr>";
 
 
-    if (isset($currentPage)&&($currentPage<=($PageCount-1)&&($currentPage>=0))) {
-        $DB->set_page($currentPage);
+    // if (isset($currentPage)&&($currentPage<=($PageCount-1)&&($currentPage>=0))) {
+    //     $DB->set_page($currentPage);
 
-    } else {
-        $DB->set_page(0);
-        $currentPage=0;
-    }
+    // } else {
+    //     $DB->set_page(0);
+    //     $currentPage=0;
+    // }
 
     
 
