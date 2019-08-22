@@ -19,12 +19,42 @@ class tableProductController extends tableController
         
     }
 
-    function actionShowTable()
-
-    {
-    $this->table->prepareQuery();
-    parent::actionShowTable();
+    function actionShowTable() {
+    //     $this->table->prepareQuery();
+    // parent::actionShowTable();
+        $page = isset($_GET['page']) ? $_GET['page'] : 0;
+        $this->render("show", [
+            'title' => "show",
+            'table' => $this->table->set_table_name('product')->productQueryPrepare()->set_page($page)->query(),
+            'targetDelURL' => '?t='.$this->classNameNP().'&a=delrow',
+            'targetEditURL' => '?t='.$this->classNameNP().'&a=showeditForm',
+            'targetAddURL' => '?t='.$this->classNameNP().'&a=showAddForm',
+            'currentURL' => '?t='.$this->classNameNP().'&a='.$this->currentActionNameNP(),
+            'currentPage' => $page,
+            'pageCount' => $this->table->set_table_name('product')->page_count(),
+            'product_column_names' => $this->table->set_table_name('product')->get_fields(),
+            'fields_comments_product' => $this->table->get_field_comments()
+            
+        ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // function actionShowTable()
+
+    // {
+    // $this->table->prepareQuery();
+    // parent::actionShowTable();
+    // }
 
     
 

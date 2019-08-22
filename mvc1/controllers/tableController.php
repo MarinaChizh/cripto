@@ -23,6 +23,8 @@ abstract class tableController extends Controller {
             'currentURL' => '?t='.$this->classNameNP().'&a='.$this->currentActionNameNP(),
             'currentPage' => $page,
             'pageCount' => $this->table->page_count(),
+            'comments' => $this->table->get_field_comments(),
+            // 'comments_categories' => $this->table->set_table_name('categories')->get_field_comments()
             // <a href="?t=table&a=showaddForm" class="badge badge-info">addForm</a>
             // 'PageCount' => $this->table->set_page_size(5),
             // 'currentPage' => $page,

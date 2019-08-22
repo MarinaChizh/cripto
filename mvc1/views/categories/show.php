@@ -11,6 +11,10 @@ $pagination .= "<li class='page-item".((($currentPage+1) > $pageCount-1) ? ' dis
 echo $pagination;
 
 echo "<table class='table table-dark'>";
+// foreach ($comments as $v) {
+//     echo "<th>$v</th>";
+// }
+
 foreach ($table as $v) {
     echo "<tr>";
     foreach ($v as $val) {
