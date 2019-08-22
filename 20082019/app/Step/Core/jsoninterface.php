@@ -1,7 +1,7 @@
 <?php
     namespace Step\Core;
 
-    interface jsonInterface
+    interface JsonInterface
     {
 
 

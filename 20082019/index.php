@@ -1,11 +1,16 @@
 <?php
     include 'autoload.php';
 
-    use Step\Core\json;
+    use Step\Core\php;
       
-    $obj = new json('123.json');
+    $obj = new php("123.php");
     // $obj->read_file();
-    $obj->del(2);
+    // $obj->del(2);
 
-    print_r($obj->get());
+    // print_r($obj->get());
+
+    // $obj->write_file([1,2,3]);
+    $obj->add([44]);
+    $obj->del(0);
+    $obj->edit(3,6);
 ?>
