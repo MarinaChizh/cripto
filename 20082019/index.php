@@ -12,5 +12,5 @@
     // $obj->write_file([1,2,3]);
     $obj->add([44]);
     $obj->del(0);
-    $obj->edit(3,6);
+    $obj->edit(3,6):
 ?>
